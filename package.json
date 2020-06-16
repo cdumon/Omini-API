@@ -1,0 +1,20 @@
+{
+  "name": "omini-api",
+  "version": "1.0.0",
+  "description": "The Omini Software Interface",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test",
+    "launch": "nodemon app.js"
+  },
+  "author": "Clement Dumon",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "mongodb": "^3.5.9",
+    "mongodb-rest": "^0.10.14",
+    "mongoose": "^5.9.18",
+    "npm-script": "^1.2.0"
+  }
+}

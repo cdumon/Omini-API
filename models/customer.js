@@ -1,6 +1,6 @@
 let Mongoose = require('mongoose');
 
-const CustomerModel = Mongoose.model("customer", {
+const Customer = Mongoose.model("customer", {
     firstName: {
         type: String,
         required: true
@@ -8,7 +8,16 @@ const CustomerModel = Mongoose.model("customer", {
     lastName: {
         type: String,
         required: true
+    },
+    displayName: {
+        type: String
+    },
+    preferredLanguage: {
+        type: String,
+    },
+    createdAt: {
+        type: Date
     }
 });
 
-module.exports = CustomerModel;
+module.exports = Customer;

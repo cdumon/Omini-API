@@ -1,4 +1,4 @@
-const app = require('../app');
+const app = require(`${appRoot}/app`);
 const fs = require('fs');
 
 /* Helper function */

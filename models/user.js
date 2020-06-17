@@ -1,14 +1,35 @@
 let Mongoose = require('mongoose');
 
-const UserModel = Mongoose.model("user", {
+const User = Mongoose.model("user", {
     firstName: {
         type: String,
-        required: true
     },
     lastName: {
         type: String,
-        required: true
+    },
+    displayName: {
+        type: String,
+    },
+    email: {
+        type: String,
+    },
+    preferredLanguage: {
+        type: String,
+    },
+    createdAt: {
+        type: Date,
+    },
+    password: {
+        type: String,
+    },
+    roles: [{
+        type: Mongoose.Schema.Types.ObjectId,
+        ref: "Role",
+    }],
+    customer: {
+    type: Mongoose.Schema.Types.ObjectId,
+        ref: 'customer'
     }
 });
 
-module.exports = UserModel;
+module.exports = User;

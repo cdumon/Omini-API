@@ -2,6 +2,7 @@ const app = require(`${appRoot}/app`);
 const models = require(`${appRoot}/models`);
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const config = require(`${appRoot}/config.json`);
 
 app.post("/signin", (request, response) => {
     models.user.findOne({ email: request.body.email }).populate("roles", "-__v") .exec((err, user) => {
@@ -22,12 +23,12 @@ app.post("/signin", (request, response) => {
         if (!passwordIsValid) {
             return response.status(401).send({
                 accessToken: null,
-                message: "Invalid Password!"
+                message: "Invalid Password"
             });
         }
 
-        let token = jwt.sign({ id: user.id }, "secret", {
-            expiresIn: 86400 // 24 hours
+        let token = jwt.sign({ id: user.id }, config.jwt.key.secret, {
+            expiresIn: config.jwt.token.expiresIn
         });
 
         let authorities = [];

@@ -30,16 +30,17 @@ module.exports = app;
 
 let host = config.server.host;
 let port = config.server.port
-app.listen(port, host, () => {
-    console.log(`API started on ${host}:${port}`);
-});
 
 var path = require('path');
 global.appRoot = path.resolve(__dirname);
 
-const routes = require('./routes');
+require('./routes');
 const models = require("./models");
 const ROLES = require('./constants/Roles')
+
+app.listen(port, host, () => {
+    console.log(`API started on ${host}:${port}`);
+});
 
 const initial = () => {
     models.role.estimatedDocumentCount((err, count) => {

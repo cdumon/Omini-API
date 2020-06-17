@@ -13,5 +13,13 @@
   "server": {
     "host": "localhost",
     "port": "3000"
+  },
+  "jwt": {
+    "key": {
+      "secret": "secret"
+    },
+    "token": {
+      "expiresIn": 3600
+    }
   }
 }

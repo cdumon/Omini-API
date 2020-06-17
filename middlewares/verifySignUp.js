@@ -2,9 +2,9 @@ const ROLES = require(`${appRoot}/constants/Roles`);
 const models = require(`${appRoot}/models`);
 
 checkDuplicateUsernameOrEmail = (req, res, next) => {
-    // Checking username disponibility
+    // Checking email disponibility
     models.user.findOne({
-        username: req.body.username
+        email: req.body.email
     }).exec((err, user) => {
         if (err) {
             res.status(500).send({ message: err });
@@ -12,26 +12,11 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
         }
 
         if (user) {
-            res.status(400).send({ message: "Failed! Username is already in use!" });
+            res.status(400).send({ message: "Failed! Email is already in use!" });
             return;
         }
 
-        // Checking email disponibility
-        models.user.findOne({
-            email: req.body.email
-        }).exec((err, user) => {
-            if (err) {
-                res.status(500).send({ message: err });
-                return;
-            }
-
-            if (user) {
-                res.status(400).send({ message: "Failed! Email is already in use!" });
-                return;
-            }
-
-            next();
-        });
+        next();
     });
 };
 

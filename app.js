@@ -4,7 +4,10 @@ let mongoose = require('mongoose');
 let config = require('./config.json');
 let db_url = `mongodb://${config.db.host}:${config.db.port}/${config.db.name}`;
 
-mongoose.connect(db_url, config.db.config);
+mongoose.connect(db_url, config.db.config).catch(error => {
+    console.error(error.toString());
+    process.exit();
+});
 let connection = mongoose.connection;
 
 connection.on('error', console.error.bind(console, 'Erreur lors de la connexion'));

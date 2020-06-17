@@ -5,7 +5,10 @@ const config = require('./config.json');
 const cors = require('cors');
 const db_url = `mongodb://${config.db.host}:${config.db.port}/${config.db.name}`;
 
-mongoose.connect(db_url, config.db.config);
+mongoose.connect(db_url, config.db.config).catch(error => {
+    console.error(error.toString());
+    process.exit();
+});
 let connection = mongoose.connection;
 
 connection.on('error', () => {

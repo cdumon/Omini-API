@@ -9,3 +9,12 @@ app.get("/customer", async (request, response) => {
         response.status(500).send(error);
     }
 });
+
+app.get("/customer/:id", async (request, response) => {
+    try {
+        let result = await models.customer.findById(request.params.id).exec();
+        response.send(result);
+    } catch (error) {
+        response.status(500).send(error);
+    }
+});

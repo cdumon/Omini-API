@@ -27,7 +27,7 @@ const User = Mongoose.model("user", {
         ref: "Role",
     }],
     customer: {
-    type: Mongoose.Schema.Types.ObjectId,
+        type: Mongoose.Schema.Types.ObjectId,
         ref: 'customer'
     }
 });

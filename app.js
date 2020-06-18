@@ -4,19 +4,22 @@ const mongoose = require('mongoose');
 const config = require('./config.json');
 const cors = require('cors');
 const db_url = `mongodb://${config.db.host}:${config.db.port}/${config.db.name}`;
+var path = require('path');
+global.appRoot = path.resolve(__dirname);
+global.logger = require('./middlewares/logger');
 
 mongoose.connect(db_url, config.db.config).catch(error => {
-    console.error(error.toString());
+    logger.error(error.toString());
     process.exit();
 });
 let connection = mongoose.connection;
 
 connection.on('error', () => {
-    console.error(`Could not connect to database ${config.db.name} on ${db_url}`)
+    logger.error(new Error('Could not connect to database ${config.db.name} on ${db_url}'));
     process.exit();
 });
 connection.once('open', function (){
-    console.log(`Connected to database ${config.db.name} on ${db_url}`);
+    logger.info(`Connected to database ${config.db.name} on ${db_url}`);
     initial();
 });
 
@@ -31,15 +34,12 @@ module.exports = app;
 let host = config.server.host;
 let port = config.server.port
 
-var path = require('path');
-global.appRoot = path.resolve(__dirname);
-
 require('./routes');
 const models = require("./models");
 const ROLES = require('./constants/Roles')
 
 app.listen(port, host, () => {
-    console.log(`API started on ${host}:${port}`);
+    logger.info(`API is live on ${host}:${port}`);
 });
 
 const initial = () => {
@@ -50,8 +50,8 @@ const initial = () => {
                     name: role
                 }).save(err => {
                     if (err)
-                        console.error(err);
-                    console.log(`Added ${role} to database ${config.db.name} on ${db_url}`);
+                        logger.error(err);
+                    logger.db(`Added ${role} to database ${config.db.name} on ${db_url}`);
                 });
             })
         }

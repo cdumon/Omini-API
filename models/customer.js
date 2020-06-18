@@ -17,7 +17,11 @@ const Customer = Mongoose.model("customer", {
     },
     createdAt: {
         type: Date
-    }
+    },
+    users: [{
+        type: Mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    }]
 });
 
 module.exports = Customer;

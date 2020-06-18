@@ -27,7 +27,7 @@ app.post("/signin", (request, response) => {
             });
         }
 
-        let token = jwt.sign({ id: user.id }, config.jwt.key.secret, {
+        let token = jwt.sign({ id: user.id }, "secret", {
             expiresIn: config.jwt.token.expiresIn
         });
 

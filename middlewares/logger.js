@@ -105,7 +105,27 @@ const customTransports = [
         json: true,
         colorize: false,
         level: 'db',
-        format: dbFilter()
+        format: combine(
+            dbFilter(),
+            format.splat(),
+            format.json()
+        )
+    }),
+    new (transports.DailyRotateFile)({
+        name: 'Combined logs',
+        filename: `${appRoot}/logs/combined/combined-%DATE%.log`,
+        datePattern: 'DD-MM-YYYY',
+        zippedArchive: true,
+        maxSize: '128m',
+        maxFiles: '365d',
+        json: true,
+        colorize: false,
+        level: 'all',
+        format: combine(
+            dbFilter(),
+            format.splat(),
+            format.json()
+        )
     })
 ]
 

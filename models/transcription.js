@@ -1,11 +1,11 @@
 let Mongoose = require('mongoose');
 
 const Transcription = Mongoose.model("transcription", {
-    createdAt: {
+    created_at: {
         type: Date,
         required: true
     },
-    finishedAt: {
+    finished_at: {
         type: Date,
         required: true
     }

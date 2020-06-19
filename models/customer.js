@@ -1,21 +1,21 @@
 let Mongoose = require('mongoose');
 
 const Customer = Mongoose.model("customer", {
-    firstName: {
+    first_name: {
         type: String,
         required: true
     },
-    lastName: {
+    last_name: {
         type: String,
         required: true
     },
-    displayName: {
+    display_name: {
         type: String
     },
-    preferredLanguage: {
+    preferred_language: {
         type: String,
     },
-    createdAt: {
+    created_at: {
         type: Date
     },
     users: [{

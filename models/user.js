@@ -1,22 +1,22 @@
 let Mongoose = require('mongoose');
 
 const User = Mongoose.model("user", {
-    firstName: {
+    first_name: {
         type: String,
     },
-    lastName: {
+    last_name: {
         type: String,
     },
-    displayName: {
+    display_name: {
         type: String,
     },
     email: {
         type: String,
     },
-    preferredLanguage: {
+    preferred_language: {
         type: String,
     },
-    createdAt: {
+    created_at: {
         type: Date,
     },
     password: {

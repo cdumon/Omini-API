@@ -10,6 +10,7 @@ app.get("/user", async (request, response) => {
                     {"email": {"$regex": request.query.search || "", "$options": "i"}}
                 ]
             })
+            .sort(request.query.sort === '-created_at' && '-created_at')
             .skip(Number(request.query.page) * Number(request.query.limit))
             .limit(Number(request.query.limit))
             .populate("customer")

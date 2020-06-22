@@ -8,7 +8,11 @@ const Transcription = Mongoose.model("transcription", {
     finished_at: {
         type: Date,
         required: true
-    }
+    },
+    participants: [{
+        type: Mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 });
 
 module.exports = Transcription;

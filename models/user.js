@@ -27,7 +27,7 @@ const User = Mongoose.model("user", {
     },
     roles: [{
         type: Mongoose.Schema.Types.ObjectId,
-        ref: "Role",
+        ref: "role",
     }],
     customer: {
         type: Mongoose.Schema.Types.ObjectId,

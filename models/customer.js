@@ -24,6 +24,10 @@ const Customer = Mongoose.model("customer", {
     created_at: {
         type: Date
     },
+    roles: [{
+        type: Mongoose.Schema.Types.ObjectId,
+        ref: "role",
+    }],
     users: [{
         type: Mongoose.Schema.Types.ObjectId,
         ref: 'user'

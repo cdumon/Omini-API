@@ -122,7 +122,6 @@ const customTransports = [
         colorize: false,
         level: 'all',
         format: combine(
-            dbFilter(),
             format.splat(),
             format.json()
         )

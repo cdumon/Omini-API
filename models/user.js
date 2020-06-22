@@ -13,6 +13,9 @@ const User = Mongoose.model("user", {
     email: {
         type: String,
     },
+    phone_number: {
+        type: String,
+    },
     preferred_language: {
         type: String,
     },

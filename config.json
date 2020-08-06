@@ -14,9 +14,16 @@
     "host": "localhost",
     "port": "3000"
   },
+  "azureCredentials": {
+    "tenantId": "901cb4ca-b862-4029-9306-e5cd0f6d9f86",
+    "clientId": "6eab10a7-a5a9-4b44-b0e8-233c819faaca",
+    "clientSecret": "o0dws73GqH0r1MtOz5qxOuNoQW1k0B.Olh",
+    "resource": "https://management.azure.com/",
+    "subscriptionId": "4c41bdae-579e-4f7f-b519-a34e5b9f462d"
+  },
   "jwt": {
     "key": {
-      "secret": "secret"
+      "secret": "2C9B73B9C2A981AF681F777914D218CBA5695F98430A59AA562F04E8040ADF84"
     },
     "token": {
       "expiresIn": 3600

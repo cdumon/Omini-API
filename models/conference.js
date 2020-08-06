@@ -1,6 +1,6 @@
 let Mongoose = require('mongoose');
 
-const Transcription = Mongoose.model("transcription", {
+const Conference = Mongoose.model("transcription", {
     created_at: {
         type: Date,
         required: true
@@ -15,4 +15,4 @@ const Transcription = Mongoose.model("transcription", {
     }]
 });
 
-module.exports = Transcription;
+module.exports = Conference;

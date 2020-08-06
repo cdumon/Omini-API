@@ -2,17 +2,18 @@ const app = require(`${appRoot}/app`);
 const models = require(`${appRoot}/models`);
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require(`${appRoot}/config.json`);
+const config = require("../../config.json");
 
 app.post("/signin", (request, response) => {
     models.user.findOne({ email: request.body.email }).populate("roles", "-__v") .exec((err, user) => {
         if (err) {
-            response.status(500).send({ message: err });
+            response.status(500).json({ message: err });
             return;
         }
 
         if (!user) {
-            return response.status(404).send({ message: "User Not found." });
+            response.status(400).json({ message: "User Not found." });
+            return
         }
 
         let passwordIsValid = bcrypt.compareSync(
@@ -21,14 +22,13 @@ app.post("/signin", (request, response) => {
         );
 
         if (!passwordIsValid) {
-            return response.status(401).send({
-                accessToken: null,
+            return response.status(401).json({
                 message: "Invalid Password"
             });
         }
 
-        let token = jwt.sign({ id: user.id }, "secret", {
-            expiresIn: config.jwt.token.expiresIn
+        let token = jwt.sign({ id: user.id }, config.jwt.key.secret, {
+            expiresIn: 3600
         });
 
         let authorities = [];
@@ -37,10 +37,7 @@ app.post("/signin", (request, response) => {
             authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
         }
         response.status(200).send({
-            id: user._id,
-            username: user.username,
-            email: user.email,
-            roles: authorities,
+            user: user,
             accessToken: token
         });
     });

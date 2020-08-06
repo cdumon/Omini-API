@@ -3,7 +3,9 @@ const fs = require('fs');
 
 /* Helper function */
 app.get('/', (req, res) => {
-    res.send("Welcome to the Omini official API.\nPlease find more info here: https://example.com")
+    res.json({
+        message: "Welcome to the Omini official API.\nPlease find more info here: https://example.com"
+    })
 });
 
 /*

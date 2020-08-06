@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const models = require(`${appRoot}/models`);
-const config = require(`${appRoot}/config.json`);
+const config = require("../config.json");
 
 verifyToken = (req, res, next) => {
     let token = req.headers["x-access-token"];
@@ -9,11 +9,11 @@ verifyToken = (req, res, next) => {
         return res.status(403).send({ message: "No token was provided" });
     }
 
-    jwt.verify(token, "secret", (err, decoded) => {
+    jwt.verify(token, config.jwt.key.secret, (err, decoded) => {
         if (err) {
             return res.status(401).send({ message: "The token provided is incorrect" });
         }
-        req.userId = decoded.id;
+        req.id = decoded.id;
         next();
     });
 };
